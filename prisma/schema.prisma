@@ -11,3 +11,36 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model Zone {
+  id Int @id @default(autoincrement())
+  name String @unique
+  type String
+  altitude Int?
+  description String?
+  createdAt DateTime @default(now())
+  species Species[]
+  observations Observation[]
+}
+
+model Species {
+  id Int @id @default(autoincrement())
+  commonName String
+  scientificName String @unique
+  type String
+  protectionStatus String
+  createdAt DateTime @default(now())
+  zones Zone[]
+  observations Observation[]
+}
+
+model Observation {
+  id Int @id @default(autoincrement())
+  quantity Int
+  notes String?
+  observedAt DateTime @default(now())
+  species Species @relation(fields: [speciesId], references: [id], onDelete: Cascade)
+  speciesId Int
+  zone Zone @relation(fields: [zoneId], references: [id], onDelete: Cascade)
+  zoneId Int
+}
