@@ -40,7 +40,7 @@ export const getObservationSchema = z.object({
   }),
 });
 
-const getObservationsQuerySchema = z.object({
+export const getObservationsQuerySchema = z.object({
   query: z.object({
     page: z
       .string()

@@ -10,18 +10,6 @@ const errorHandler = (
 ) => {
   console.error(err.stack);
 
-  // Erreur Zod
-  if (err instanceof ZodError) {
-    return res.status(400).json({
-      success: false,
-      message: "Erreur de validation",
-      errors: err.issues.map((e) => ({
-        field: e.path.join("."),
-        message: e.message,
-      })),
-    });
-  }
-
   //   Erreurs Prisma
   if (err instanceof Prisma.PrismaClientKnownRequestError) {
     switch (err.code) {
@@ -41,6 +29,18 @@ const errorHandler = (
         });
         break;
     }
+  }
+
+  // Erreur Zod
+  if (err instanceof ZodError) {
+    return res.status(400).json({
+      success: false,
+      message: "Erreur de validation",
+      errors: err.issues.map((e) => ({
+        field: e.path.join("."),
+        message: e.message,
+      })),
+    });
   }
 
   // Erreur générique

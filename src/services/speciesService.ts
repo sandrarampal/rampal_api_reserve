@@ -41,7 +41,7 @@ const getSpeciesById = async (id: number) => {
       scientificName: true,
       type: true,
       protectionStatus: true,
-      zone: {
+      zones: {
         select: {
           name: true,
           type: true,
@@ -55,7 +55,7 @@ const getSpeciesById = async (id: number) => {
           observedAt: true,
         },
         orderBy: { observedAt: "desc" },
-        limit: 10,
+        take: 10,
       },
     },
   });
