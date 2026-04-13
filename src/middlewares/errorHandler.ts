@@ -14,20 +14,17 @@ const errorHandler = (
   if (err instanceof Prisma.PrismaClientKnownRequestError) {
     switch (err.code) {
       case "P2025":
-        res.status(404).json({
+        return res.status(404).json({
           message: "Enregistrement non trouvé",
         });
-        break;
       case "P2002":
-        res.status(409).json({
+        return res.status(409).json({
           message: "Contrainte unique violée",
         });
-        break;
       case "P2003":
-        res.status(400).json({
+        return res.status(400).json({
           message: "contrainte de foreign key violée",
         });
-        break;
     }
   }
 

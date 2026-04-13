@@ -63,7 +63,7 @@ const getAllObservations = async (params: {
 };
 
 const getObservationById = async (id: number) => {
-  return prisma.observation.findUnique({
+  return prisma.observation.findUniqueOrThrow({
     where: { id },
     include: { species: true, zone: true },
   });

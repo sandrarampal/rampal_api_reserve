@@ -14,7 +14,10 @@ const getAllZones = async () => {
 };
 
 const getZoneById = async (id: number) => {
-  return prisma.zone.findUnique({ where: { id }, include: { species: true } });
+  return prisma.zone.findUniqueOrThrow({
+    where: { id },
+    include: { species: true },
+  });
 };
 
 const updateZone = async (

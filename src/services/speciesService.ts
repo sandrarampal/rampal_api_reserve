@@ -33,7 +33,7 @@ const getAllSpecies = async (params: {
 };
 
 const getSpeciesById = async (id: number) => {
-  return prisma.species.findUnique({
+  return prisma.species.findUniqueOrThrow({
     where: { id },
     select: {
       id: true,
