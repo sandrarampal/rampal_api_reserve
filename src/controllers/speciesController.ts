@@ -72,7 +72,7 @@ const disconnectSpecies = async (
   try {
     const species = await speciesService.removeSpeciesFromZone(
       Number(req.params.speciesId),
-      Number(req.params.regionId),
+      Number(req.params.zoneId),
     );
     res.json(species);
   } catch (err) {

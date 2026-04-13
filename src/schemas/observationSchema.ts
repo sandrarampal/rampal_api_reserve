@@ -54,8 +54,8 @@ export const getObservationsQuerySchema = z.object({
       .pipe(z.number().int().min(1).max(100))
       .default(10)
       .optional(),
-    speciesId: z.number().int("Id d'espèce invalide").optional(),
-    zoneId: z.number().int("Id d'espèce invalide").optional(),
+    speciesId: z.coerce.number().int("Id d'espèce invalide").optional(),
+    zoneId: z.coerce.number().int("Id de zone invalide").optional(),
   }),
 });
 

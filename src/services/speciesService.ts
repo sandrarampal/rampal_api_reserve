@@ -29,7 +29,7 @@ const getAllSpecies = async (params: {
     where.commonName = { contains: search, mode: "insensitive" };
   }
 
-  return prisma.species.findMany(where);
+  return prisma.species.findMany(where ? { where } : undefined);
 };
 
 const getSpeciesById = async (id: number) => {
