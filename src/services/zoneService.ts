@@ -14,7 +14,7 @@ const getAllZones = async () => {
 };
 
 const getZoneById = async (id: number) => {
-  return prisma.zone.findUniqueOrThrow({
+  return prisma.zone.findUnique({
     where: { id },
     include: { species: true },
   });
